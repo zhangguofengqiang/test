@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.tarena.dao.BookDao">	
+	
+    <!-- 查询前num个book-->
+    <select id="findPart1" parameterType="java.lang.Integer"
+     resultType="com.tarena.entity.Book">
+        select * from t_book limit #{num}
+    </select>
+    
+    <!-- 查询前num开始的4个book -->
+    <select id="findPart2" parameterType="java.lang.Integer"
+     resultType="com.tarena.entity.Book">
+        select * from t_book limit #{num},4
+    </select>
+    
+    <!-- 查询前num开始的10个book -->
+    <select id="findPart3" parameterType="java.lang.Integer"
+     resultType="com.tarena.entity.Book">
+        select * from t_book limit #{num},10
+    </select>
+    
+    <!-- 根据ID查询book-->
+    <select id="findBookById" parameterType="java.lang.Integer"
+     resultType="com.tarena.entity.Book">
+        select * from t_book where id=#{id}
+    </select>
+    
+    <!-- 查询全部book -->
+	<select id="findAllBook" resultType="com.tarena.entity.Book">
+	    select * from t_book
+	</select>
+	
+	<!-- 分页查询 -->
+	<select id="findByPage" parameterType="com.tarena.entity.Page"
+	 resultType="com.tarena.entity.Book">
+	    select * from t_book where id&lt;#{end} and id>#{begin} order by id
+	</select>
+</mapper>

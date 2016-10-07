@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.tarena.dao.ProductDao">	
+    <!-- 查询全部product -->
+	<select id="findAll" resultType="com.tarena.entity.Product">
+	    select * from t_product
+	</select>
+	
+	<!-- 根据id查询product -->
+    <select id="findById" parameterType="java.lang.Integer"
+     resultType="com.tarena.entity.Product">
+        select * from t_product where id=#{id}
+    </select>
+	
+	<!-- 删除product -->
+    <delete id="delete" parameterType="java.lang.Integer">
+        delete from t_product where id=#{id}
+    </delete>
+    
+    <!-- 修改product -->
+    <update id="update" parameterType="com.tarena.entity.Product">
+        update t_product set productNum=#{productNum} where id=#{id}
+    </update>
+    
+    <!-- 根据userName、productName查询product -->
+    <select id="findByProductAndUser" parameterType="java.lang.String"
+     resultType="com.tarena.entity.Product">
+        select * from t_product where productName=#{productName} and userName=#{userName}
+    </select>
+    
+    <!-- 保存一条product数据 -->
+	<insert id="save" parameterType="com.tarena.entity.Product">
+        insert into t_product(userName,productName,description,addTime,fixedPrice,dangPrice,productNum) 
+        values(#{userName},#{productName},#{description},#{addTime},#{fixedPrice},#{dangPrice},#{productNum})
+    </insert>
+    
+    <!-- 根据userName查询product -->
+    <select id="findByUserName" parameterType="java.lang.String"
+     resultType="com.tarena.entity.Product">
+        select * from t_product where userName=#{userName}
+    </select>
+</mapper>
