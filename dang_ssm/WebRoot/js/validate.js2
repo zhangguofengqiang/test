@@ -1,0 +1,12 @@
+$(function(){
+	$('#f').validate({
+		rules:{
+			user\.email:{required:true,email:true,remote:'checkEmail.action'},
+			txtNickName:{required:true,minLength:4,maxLength:20},
+			txtPassword:{required:true,minLength:6,maxLength:20},
+			txtRepeatPass:{required:true,equalTo:'#txtPassword'},
+			txtVerifyCode:{remote:'verifyCode.action'}},
+		message:{
+			user\.email:{required:'邮箱没有填写',email:'邮箱格式错误',remote:'邮箱已被注册'},
+			}});
+});
